@@ -15,7 +15,14 @@ app.get('/', (req, res) => {
 app.post('/sum', (req, res)=>{
   //will handle sum function here
   const {stringInput} = req.body;
-  let output = sum();
+  
+  let output = 0;
+  if(stringInput.length === 0){
+    output = sum();
+  }
+  else{
+    output = sum(Number(stringInput))
+  }
   
   res.status(200).send({result:output})
 });

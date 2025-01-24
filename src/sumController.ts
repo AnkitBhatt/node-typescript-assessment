@@ -1,3 +1,8 @@
-export const sum = () => {
-  return 0;
+export const sum = (num1?) => {
+  if(num1){
+    return num1;
+  }
+  else{
+    return 0;
+  }
 }
