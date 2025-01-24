@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
 
 app.post('/sum', (req, res) => {
   //will handle sum function here
-  const { stringInput } = req.body;
+  let { stringInput } = req.body;
 
   let output = 0;
   if (stringInput.length === 0) {
@@ -27,12 +27,18 @@ app.post('/sum', (req, res) => {
     //only comma separated
     //const arr = stringInput.split(",")
 
+    let delimeter = ','
+    //delimeter handling
+    if(stringInput[0] === "/"){
+      delimeter = stringInput[2];
+      stringInput = stringInput.slice(5)
+    }
     //comma and new line both are in string
     const newLineArrays = stringInput.split('\\n');
     const arr = []
     for (const n of newLineArrays) {
-      if (n.includes(",")) {
-        const array = n.split(',');
+      if (n.includes(delimeter)) {
+        const array = n.split(delimeter);
         arr.push(...array);
       }
       else {
