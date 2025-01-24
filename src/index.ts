@@ -12,25 +12,39 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 
-app.post('/sum', (req, res)=>{
+app.post('/sum', (req, res) => {
   //will handle sum function here
-  const {stringInput} = req.body;
-  
+  const { stringInput } = req.body;
+
   let output = 0;
-  if(stringInput.length === 0){
+  if (stringInput.length === 0) {
     output = sum();
   }
-  else if(stringInput.length === 1){
-    output = sum(Number(stringInput))
+  else if (stringInput.length === 1) {
+    output = sum(stringInput)
   }
-  else{
-    const arr = stringInput.split(",")
+  else {
+    //only comma separated
+    //const arr = stringInput.split(",")
+
+    //comma and new line both are in string
+    const newLineArrays = stringInput.split('\\n');
+    const arr = []
+    for (const n of newLineArrays) {
+      if (n.includes(",")) {
+        const array = n.split(',');
+        arr.push(...array);
+      }
+      else {
+        arr.push(n)
+      }
+    }
     output = sum(...arr)
   }
-  
-  res.status(200).send({result:output})
+
+  res.status(200).send({ result: output })
 });
 
-app.listen(process.env.PORT, ()=>{
+app.listen(process.env.PORT, () => {
   console.log("Server is running on port ", process.env.PORT)
 })
