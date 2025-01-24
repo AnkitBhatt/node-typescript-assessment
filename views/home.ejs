@@ -34,11 +34,38 @@
     <div class="item">
       <h1>String Calculator</h1>
       <form>
-        <input type="text">
-        <button>Calculate</button>
+        <input type="text" name="stringInput">
+        <button type="submit">Calculate</button>
       </form>
-      <h2>Sum <span>0</span></h2>
+      <h2>Sum <span class="sum">0</span></h2>
     </div>
   </div>
+
+  <script>
+    const form = document.querySelector('form');
+    const sumSpan = document.querySelector('.item.sum')
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const stringInput = form.stringInput.value;
+      try {
+        const res = await fetch('/sum',{
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({stringInput})
+        })
+
+        const data = await res.json();
+        if(data.result){
+          sumSpan.textContent = data.result;
+        }
+        
+
+      } catch (error) {
+        console.log(error);
+      }
+    })
+  </script>
 </body>
 </html>
