@@ -13,4 +13,8 @@ describe('Sum Controller', () => {
   test('should return sum of two values', () => {
     expect(sum(5, 7)).toBe(12);
   });
+
+  test('should return sum of all the values available ', () => {
+    expect(sum(5, 7, 13, 1)).toBe(26);
+  });
 });
