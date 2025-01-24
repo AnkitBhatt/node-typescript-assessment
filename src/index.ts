@@ -1,5 +1,4 @@
 import express from 'express';
-import { sum } from "./sumController.js";
 
 const app = express();
 
@@ -10,7 +9,9 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 
-app.post('/sum', sum);
+app.post('/sum', (req, res)=>{
+  //will handle sum function here
+});
 
 app.listen(process.env.PORT, ()=>{
   console.log("Server is running on port ", process.env.PORT)
