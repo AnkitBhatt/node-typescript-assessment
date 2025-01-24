@@ -9,4 +9,8 @@ describe('Sum Controller', () => {
   test('should return number if single numeric is input', () => {
     expect(sum(5)).toBe(5);
   });
+
+  test('should return sum of two values', () => {
+    expect(sum(5, 7)).toBe(12);
+  });
 });
