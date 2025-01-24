@@ -20,8 +20,12 @@ app.post('/sum', (req, res)=>{
   if(stringInput.length === 0){
     output = sum();
   }
-  else{
+  else if(stringInput.length === 1){
     output = sum(Number(stringInput))
+  }
+  else{
+    const [number1, number2] = stringInput.split(",")
+    output = sum(Number(number1), Number(number2))
   }
   
   res.status(200).send({result:output})
