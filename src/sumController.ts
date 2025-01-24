@@ -1,9 +1,10 @@
-export const sum = (num1?, num2?) => {
-  if(num1 && !num2){
-    return num1;
-  }
-  else if(num1 && num2){
-    return num1 + num2
+export const sum = (...args) => {
+  if(args){
+    let sum = 0;
+    for(const i of args){
+      sum += Number(i);
+    }
+    return sum;
   }
   else{
     return 0;

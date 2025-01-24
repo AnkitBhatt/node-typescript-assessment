@@ -24,8 +24,8 @@ app.post('/sum', (req, res)=>{
     output = sum(Number(stringInput))
   }
   else{
-    const [number1, number2] = stringInput.split(",")
-    output = sum(Number(number1), Number(number2))
+    const arr = stringInput.split(",")
+    output = sum(...arr)
   }
   
   res.status(200).send({result:output})
