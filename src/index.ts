@@ -45,6 +45,19 @@ app.post('/sum', (req, res) => {
         arr.push(n)
       }
     }
+
+    const negativeArray = []
+    for(const i of arr){
+      if(i < 0){
+        negativeArray.push(i)
+      }
+    }
+
+    if(negativeArray.length > 0){
+      const msg = negativeArray.join(',')
+      res.status(500).send({message: `negative numbers not allowed ${msg}`})
+    }
+
     output = sum(...arr)
   }
 
