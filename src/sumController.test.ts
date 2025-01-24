@@ -5,4 +5,8 @@ describe('Sum Controller', () => {
   test('should return 0 for no input', () => {
     expect(sum()).toBe(0);
   });
+
+  test('should return number if single numeric is input', () => {
+    expect(sum(5)).toBe(5);
+  });
 });
